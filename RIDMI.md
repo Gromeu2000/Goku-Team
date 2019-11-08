@@ -1,13 +1,13 @@
 *DEVELOPERS OF THE  EULER INTEGRATOR:*
 
-
 - Adrian Mirabel (EL DE LOS RECADOS) https://github.com/M1R4B3L
 - Marc San Jose(LEAD PROGRAMER) https://github.com/marcsjm19
-- Gerard Romeu (LEAD OF LEADS) https://github.com/Gromeu2000
-- Albert Espinosa (TORDERA) https://github.com/albertec1
+- Gerard Romeu (THE LIDER) https://github.com/Gromeu2000
+- Albert Espinosa () https://github.com/albertec1
 - Marc Gallardo (CHUSKY CHUSKO QUE CHUSKA) https://github.com/Marchusky
-- Marc Ariza (EL DEL PIRATEO) https://github.com/MarcArizaAlborni
- -Angel GonzÃ¡lez (SPLEEPING) https://github.com/BarcinoLechiguino
+- Marc Ariza (EXPERT MATHEMATICIAN) https://github.com/MarcArizaAlborni
+ -Angel González (SUBE LA NOTA CON EL PELOTEO A LOS PROFES) https://github.com/BarcinoLechiguino
+>>>>>>> master
 
  Apache Helicoptero de combate License
                            Version 2.0, January 2004
