@@ -1,8 +1,15 @@
-   
-DEVELOPERS OF THE MAGNANIMOUS (EULER) INTEGRATOR: Adrian Mirabel, Marc San Jose, Gerard Romeu, Albert Espinosa, Marc Gallardo, Marc Ariza
+*DEVELOPERS OF THE  EULER INTEGRATOR:*
 
 
- Apache License
+- Adrian Mirabel (EL DE LOS RECADOS) https://github.com/M1R4B3L
+- Marc San Jose(LEAD PROGRAMER) https://github.com/marcsjm19
+- Gerard Romeu (THE LIDER) https://github.com/Gromeu2000
+- Albert Espinosa () https://github.com/albertec1
+- Marc Gallardo () https://github.com/Marchusky
+- Marc Ariza (EXPERT MATHEMATICIAN) https://github.com/MarcArizaAlborni
+ -Angel González (SUBE LA NOTA CON EL PELOTEO A LOS PROFES) https://github.com/BarcinoLechiguino
+
+ Apache Helicoptero de combate License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
 
