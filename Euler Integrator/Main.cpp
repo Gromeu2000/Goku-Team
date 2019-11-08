@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include <iostream>
 
+
 enum main_states
 {
 	MAIN_CREATION,
