@@ -1,4 +1,3 @@
-   
 *DEVELOPERS OF THE  EULER INTEGRATOR:*
 
 
@@ -8,7 +7,7 @@
 - Albert Espinosa () https://github.com/albertec1
 - Marc Gallardo () https://github.com/Marchusky
 - Marc Ariza () https://github.com/MarcArizaAlborni
- -Angel Gonz√°lez () https://github.com/BarcinoLechiguino
+ -Angel Gonz·lez () https://github.com/BarcinoLechiguino
 
  Apache Helicoptero de combate License
                            Version 2.0, January 2004
