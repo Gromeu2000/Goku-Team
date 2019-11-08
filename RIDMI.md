@@ -3,11 +3,11 @@
 
 - Adrian Mirabel (EL DE LOS RECADOS) https://github.com/M1R4B3L
 - Marc San Jose(LEAD PROGRAMER) https://github.com/marcsjm19
-- Gerard Romeu () https://github.com/Gromeu2000
-- Albert Espinosa () https://github.com/albertec1
-- Marc Gallardo () https://github.com/Marchusky
-- Marc Ariza () https://github.com/MarcArizaAlborni
- -Angel Gonz·lez () https://github.com/BarcinoLechiguino
+- Gerard Romeu (LEAD OF LEADS) https://github.com/Gromeu2000
+- Albert Espinosa (TORDERA) https://github.com/albertec1
+- Marc Gallardo (CHUSKY CHUSKO QUE CHUSKA) https://github.com/Marchusky
+- Marc Ariza (EL DEL PIRATEO) https://github.com/MarcArizaAlborni
+ -Angel Gonz√°lez (SPLEEPING) https://github.com/BarcinoLechiguino
 
  Apache Helicoptero de combate License
                            Version 2.0, January 2004
