@@ -86,10 +86,28 @@ enum main_states
 //	return main_return;
 //}
 
+int integratorX(int x_, int v_, int t_, int a_ = 0)
+{
+	return (x_ + v_ * t_);
+}
+int integratorV(int x_, int v_, int t_, int a_ = 0)
+{
+	return (v_ + a_ * t_);
+}
 int main()
 {
+	
+	int Xi = 0;
+	int V = 3;
+	int Tf = 5;
+	int T = 1;
+	std::cout << "xi:" << Xi << "  vi:" << V << "  a:0" << std::endl;
 
-
+	for (T; T <= Tf; T++)
+	{
+		std::cout <<"T:"<< T << "  x:" << integratorX(Xi, V, T) << "  v:" << integratorV(Xi, V, T) << "  a:0" << std::endl;
+		
+	}
 
 	system("pause");
 	return 0;
