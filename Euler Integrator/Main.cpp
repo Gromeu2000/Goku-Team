@@ -1,6 +1,7 @@
 #include "p2Log.h"
 #include "Application.h"
 #include "Globals.h"
+#include <iostream>
 
 enum main_states
 {
