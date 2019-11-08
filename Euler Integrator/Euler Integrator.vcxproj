@@ -124,7 +124,11 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Module.h" />
+    <ClInclude Include="p2Defs.h" />
+    <ClInclude Include="p2List.h" />
     <ClInclude Include="p2Log.h" />
+    <ClInclude Include="p2Queue.h" />
+    <ClInclude Include="p2String.h" />
     <ClInclude Include="Physics.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
