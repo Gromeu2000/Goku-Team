@@ -15,10 +15,9 @@ public:
 	ModulePhysics* physics;
 
 
-
 private:
 
-	Module* modules;
+	p2List<Module*> list_modules;
 
 public:
 
