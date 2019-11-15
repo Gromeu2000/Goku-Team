@@ -7,7 +7,7 @@
 - Albert Espinosa https://github.com/albertec1
 - Marc Gallardo https://github.com/Marchusky
 - Marc Ariza  https://github.com/MarcArizaAlborni
- -Angel González https://github.com/BarcinoLechiguino
+ -Angel González https://github.com/BarcinoLechiguino SE LA ESTA JUGANDO: en nivel 1, si llega al lvl 3 es expulsion
 
  Apache Helicoptero de combate License
                            Version 2.0, January 2004
