@@ -22,7 +22,7 @@ bool ModulePhysics::Start()
 	return true;
 }
 
-bool ModulePhysics::Update()
+bool ModulePhysics::Update(float dt)
 {
 
 	return true;

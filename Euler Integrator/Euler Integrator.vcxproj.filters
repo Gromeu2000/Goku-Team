@@ -9,7 +9,7 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="p2">
+    <Filter Include="Utilities">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
@@ -25,7 +25,7 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="p2Log.cpp">
-      <Filter>p2</Filter>
+      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="ModuleWindow.cpp">
       <Filter>Modules</Filter>
@@ -36,22 +36,28 @@
     <ClCompile Include="ModuleTextures.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfTimer.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="p2Log.h">
-      <Filter>p2</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="p2List.h">
-      <Filter>p2</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="p2Defs.h">
-      <Filter>p2</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="p2Queue.h">
-      <Filter>p2</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="p2Point.h">
-      <Filter>p2</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="ModuleApp.h">
       <Filter>Modules</Filter>
@@ -69,12 +75,18 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="p2SString.h">
-      <Filter>p2</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="ModuleRender.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleTextures.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="PerfTimer.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>

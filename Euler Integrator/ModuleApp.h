@@ -3,6 +3,8 @@
 
 #include "p2List.h"
 #include "Module.h"
+#include "Timer.h"
+#include "PerfTimer.h"
 
 
 // Modules
@@ -60,10 +62,10 @@ private:
 public:
 
 	// Modules
-	ModuleWindow*			win;
-	ModuleRender*			render;
-	ModuleTextures*				tex;
-	ModulePhysics*			physics;
+	ModuleWindow*		win;
+	ModuleRender*		render;
+	ModuleTextures*		tex;
+	ModulePhysics*		physics;
 
 
 
@@ -71,11 +73,13 @@ private:
 
 	p2List<Module*>		modules;
 	uint				frames;
-	float				dt;
-
 
 	int					argc;
 	char**				args;
+
+	float				dt;						//Keeps track of the amount of seconds that have passed in the span of a frame.
+	Timer				frame_timer;			//Keeps track of everything time related in the span of a frame.
+	uint				frame_cap = 60;			//Stores the frames per second cap to be applied.
 };
 
 extern ModuleApp* App;

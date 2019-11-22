@@ -108,11 +108,20 @@ bool ModuleApp::Update()
 // ---------------------------------------------
 void ModuleApp::PrepareUpdate()
 {
+	dt = frame_timer.ReadSec();								//Sets dt with the time returned by frame_timer.
+	frame_timer.Start();									//Starts the frame_timer.
 }
 
 // ---------------------------------------------
 void ModuleApp::FinishUpdate()
 {
+	float frame_cap_ms = 1000 / frame_cap;					//Frame cap in ms. (Ex: 30 fps --> 33,33 ms)
+	float current_frame_ms = frame_timer.Read();			//Amount of ms in the span of a frame.
+
+	if (current_frame_ms < frame_cap_ms)
+	{
+		SDL_Delay(frame_cap_ms - current_frame_ms);			//Applies delay so there is a frame cap.
+	}
 }
 
 // Call modules before each loop iteration
