@@ -11,6 +11,22 @@
 #include "p2String.h"
 
 
+class vec3d					//Class that will be used to declare 3D Vectors.
+{
+public:
+	float x;
+	float y;
+	float z;
+};
+
+class particle				//Class that will be used to declare objects / particles.
+{
+public:
+	vec3d position;
+	vec3d speed;
+	vec3d acceleration;
+};
+
 struct Object
 {
 	p2SString	name;
@@ -36,6 +52,8 @@ public:
 	iPoint IntegratorPos(iPoint pos_, iPoint vel_, int t_, iPoint acc_);
 	iPoint IntegratorVel(int x_, int v_, int t_, int a_ = 0);
 	int IntegratorResolver();
+
+	void EulerIntegrator(vec3d& iposition, vec3d& ivelocity, vec3d& fposition, vec3d& fvelocity, vec3d acceleration, float dt);
 
 
 private:
