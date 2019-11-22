@@ -1,89 +1,114 @@
+#include <stdlib.h>
+
+#include "p2Defs.h"
 #include "p2Log.h"
-#include "Application.h"
-#include "Globals.h"
-#include <iostream>
+#include "ModuleApp.h"
 
+// This is needed here because SDL redefines main function
+// do not add any other libraries here, instead put them in their modules
+#include "SDL/include/SDL.h"
+#pragma comment( lib, "SDL/libx86/SDL2.lib" )
+#pragma comment( lib, "SDL/libx86/SDL2main.lib" )
 
-enum main_states
+enum MainState
 {
-	MAIN_CREATION,
-	MAIN_START,
-	MAIN_UPDATE,
-	MAIN_FINISH,
-	MAIN_EXIT
+	CREATE = 1,
+	AWAKE,
+	START,
+	LOOP,
+	CLEAN,
+	FAIL,
+	EXIT
 };
 
-int main(int argc, char ** argv)
+ModuleApp* App = NULL;
+
+int main(int argc, char* args[])
 {
-	LOG("Starting game '%s'...", TITLE);
+	LOG("Engine starting ...");
 
-	int main_return = EXIT_FAILURE;
-	main_states state = MAIN_CREATION;
-	Application* App = NULL;
+	MainState state = CREATE;
+	int result = EXIT_FAILURE;
 
-	while (state != MAIN_EXIT)
+	while (state != EXIT)
 	{
 		switch (state)
 		{
-		case MAIN_CREATION:
 
-			LOG("-------------- Application Creation --------------");
-			App = new Application();
-			state = MAIN_START;
+			// Allocate the engine --------------------------------------------
+		case CREATE:
+			LOG("CREATION PHASE ===============================");
+
+			App = new ModuleApp(argc, args);
+
+			if (App != NULL)
+				state = AWAKE;
+			else
+				state = FAIL;
+
 			break;
 
-		case MAIN_START:
-
-			LOG("-------------- Application Init --------------");
-			if (App->Init() == false)
+			// Awake all modules -----------------------------------------------
+		case AWAKE:
+			LOG("AWAKE PHASE ===============================");
+			if (App->Awake() == true)
+				state = START;
+			else
 			{
-				LOG("Application Init exits with ERROR: shame on you");
-				state = MAIN_EXIT;
+				LOG("ERROR: Awake failed");
+				state = FAIL;
+			}
+
+			break;
+
+			// Call all modules before first frame  ----------------------------
+		case START:
+			LOG("START PHASE ===============================");
+			if (App->Start() == true)
+			{
+				state = LOOP;
+				LOG("UPDATE PHASE ===============================");
 			}
 			else
 			{
-				state = MAIN_UPDATE;
-				LOG("-------------- Application Update --------------");
+				state = FAIL;
+				LOG("ERROR: Start failed");
 			}
-
 			break;
 
-		case MAIN_UPDATE:
-		{
-			int update_return = App->Update();
+			// Loop all modules until we are asked to leave ---------------------
+		case LOOP:
+			if (App->Update() == false)
+				state = CLEAN;
+			break;
 
-			if (update_return == UPDATE_ERROR)
+			// Cleanup allocated memory -----------------------------------------
+		case CLEAN:
+			LOG("CLEANUP PHASE ===============================");
+			if (App->CleanUp() == true)
 			{
-				LOG("Application Update exits with ERROR: shame on you");
-				state = MAIN_EXIT;
-			}
-
-			if (update_return == UPDATE_STOP)
-				state = MAIN_FINISH;
-		}
-		break;
-
-		case MAIN_FINISH:
-
-			LOG("-------------- Application CleanUp --------------");
-			if (App->CleanUp() == false)
-			{
-				LOG("Application CleanUp exits with ERROR: shame on you");
+				RELEASE(App);
+				result = EXIT_SUCCESS;
+				state = EXIT;
 			}
 			else
-				main_return = EXIT_SUCCESS;
-
-			state = MAIN_EXIT;
+				state = FAIL;
 
 			break;
 
+			// Exit with errors and shame ---------------------------------------
+		case FAIL:
+			LOG("Exiting with errors :(");
+			result = EXIT_FAILURE;
+			state = EXIT;
+			break;
 		}
 	}
 
-	delete App;
-	LOG("Exiting '%s'...\n", TITLE);
-	LOG("Bye! (:");
-	return main_return;
+	LOG("... Bye! :)\n");
+
+	// Dump memory leaks
+	return result;
 }
 
 //int integratorX(int x_, int v_, int t_, int a_ = 0)

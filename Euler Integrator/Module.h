@@ -1,74 +1,69 @@
-#pragma once
+// ----------------------------------------------------
+// Module.h
+// Interface for all engine modules
+// ----------------------------------------------------
 
-#include "Globals.h"
+#ifndef __MODULE_H__
+#define __MODULE_H__
 
-class Application;
+#include "p2SString.h"
 
+
+class ModuleApp;
 
 class Module
 {
-private:
-	bool enabled;
-
 public:
-	Application* App;
 
-	Module(Application* parent, bool start_enabled = true) : App(parent), enabled(start_enabled)
+	Module() : active(false)
 	{}
 
-	virtual ~Module()
-	{}
-
-	bool IsEnabled() const
+	void Init()
 	{
-		return enabled;
+		active = true;
 	}
 
-	void Enable()
-	{
-		if (enabled == false)
-		{
-			enabled = true;
-			Start();
-		}
-	}
-
-	void Disable()
-	{
-		if (enabled == true)
-		{
-			enabled = false;
-			CleanUp();
-		}
-	}
-
-	virtual bool Init()
+	// Called before render is available
+	virtual bool Awake()
 	{
 		return true;
 	}
 
+	// Called before the first frame
 	virtual bool Start()
 	{
 		return true;
 	}
 
-	virtual update_status PreUpdate()
+	// Called each loop iteration
+	virtual bool PreUpdate()
 	{
-		return UPDATE_CONTINUE;
+		return true;
 	}
 
-	virtual update_status Update()
+	// Called each loop iteration
+	virtual bool Update(float dt)
 	{
-		return UPDATE_CONTINUE;
+		return true;
 	}
 
-	virtual update_status PostUpdate()
+	// Called each loop iteration
+	virtual bool PostUpdate()
 	{
-		return UPDATE_CONTINUE;
+		return true;
 	}
 
+	// Called before quitting
 	virtual bool CleanUp()
 	{
 		return true;
 	}
+
+public:
+
+	p2SString	name;
+	bool		active;
+
 };
+
+#endif // __MODULE_H__

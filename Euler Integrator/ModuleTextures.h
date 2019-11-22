@@ -1,5 +1,5 @@
-#ifndef __TEXTURES_H__
-#define __TEXTURES_H__
+#ifndef __MODULETEXTURES_H__
+#define __MODULETEXTURES_H__
 
 #include "Module.h"
 #include "p2List.h"
@@ -7,16 +7,14 @@
 struct SDL_Texture;
 struct SDL_Surface;
 
-#define MAX_TEXTURES 50
-
-class j1Textures : public Module
+class ModuleTextures : public Module
 {
 public:
 
-	j1Textures();
+	ModuleTextures();
 
 	// Destructor
-	virtual ~j1Textures();
+	virtual ~ModuleTextures();
 
 	// Called before render is available
 	bool Awake();
@@ -39,4 +37,4 @@ public:
 };
 
 
-#endif // __TEXTURES_H__
+#endif // __MODULETEXTURES_H__

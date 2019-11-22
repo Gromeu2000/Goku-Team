@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include "p2Log.h"
+#include "ModuleApp.h"
 #include "ModulePhysics.h"
-#include"Application.h"
 
 
-
-ModulePhysics::ModulePhysics(Application*app, bool start_enabled) : Module(app, start_enabled)
+ModulePhysics::ModulePhysics() : Module()
 {
 	LOG("Constructor");
 }
@@ -22,12 +22,10 @@ bool ModulePhysics::Start()
 	return true;
 }
 
-update_status ModulePhysics::Update()
+bool ModulePhysics::Update()
 {
 
-
-
-	return UPDATE_CONTINUE;
+	return true;
 }
 
 

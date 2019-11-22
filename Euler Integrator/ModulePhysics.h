@@ -1,14 +1,13 @@
+#ifndef __MODULEPHYSICS_H__
+#define __MODULEPHYSICS_H__
 
-#ifndef __Physics_H__
-#define __Physics_H__
 
-
-#include "Application.h"
+#include "ModuleApp.h"
 #include "Globals.h"
 #include "p2Point.h"
 #include "p2List.h"
 #include "Module.h"
-#include "p2String.h"
+#include "p2SString.h"
 
 
 class vec3d					//Class that will be used to declare 3D Vectors.
@@ -40,11 +39,14 @@ struct Object
 class ModulePhysics:public Module
 {
 public:
-	ModulePhysics(Application* app, bool start_enabled = true);
+	ModulePhysics();
 	~ModulePhysics();
 
+	//bool Awake();
 	bool Start();
-	update_status Update();
+	//bool PreUpdate();
+	bool Update();
+	//bool PostUpdate();
 	bool CleanUp();
 
 public:
@@ -56,4 +58,4 @@ public:
 
 
 
-#endif // __Physics_H__
+#endif // __MODULEPHYSICS_H__
