@@ -120,6 +120,7 @@
     <ClCompile Include="p2Log.cpp" />
     <ClCompile Include="ModulePhysics.cpp" />
     <ClCompile Include="PerfTimer.cpp" />
+    <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +135,7 @@
     <ClInclude Include="p2String.h" />
     <ClInclude Include="ModulePhysics.h" />
     <ClInclude Include="perfTimer.h" />
+    <ClInclude Include="Textures.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
