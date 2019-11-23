@@ -13,6 +13,7 @@ class ModuleRender;
 class ModuleTextures;
 class ModulePhysics;
 class ModuleScene;
+class ModuleInput;
 
 class ModuleApp
 {
@@ -68,7 +69,7 @@ public:
 	ModuleTextures*		tex;
 	ModulePhysics*		physics;
 	ModuleScene*		scene;
-
+	ModuleInput*		input;
 
 private:
 

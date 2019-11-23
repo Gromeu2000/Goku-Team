@@ -4,6 +4,7 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleScene.h"
+#include "ModuleInput.h"
 
 #include "SDL_image/include/SDL_image.h"
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
@@ -34,9 +35,28 @@ bool ModuleScene::Start()
 	return ret;
 }
 
+bool ModuleScene::PreUpdate()
+{
+	bool ret = true;
+	return ret;
+}
+
 bool ModuleScene::Update(float dt)
 {
 	bool ret = true;
+
+	return ret;
+}
+
+bool ModuleScene::PostUpdate()
+{
+	bool ret = true;
+
+	if (App->input->GetKeyDown(SDLK_ESCAPE) == true) {
+		LOG("ESCAPE");
+		ret = false;
+	}
+
 
 	return ret;
 }

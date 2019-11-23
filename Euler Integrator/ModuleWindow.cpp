@@ -63,8 +63,7 @@ bool ModuleWindow::Awake()
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 		}
 
-		//TODO 7: Move "Todo 4" code to the awake method on the window module
-		//Pass the title as a variable when creating the window
+	
 		window = SDL_CreateWindow("EULER INTEGRATOR", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
 
 		if (window == NULL)
@@ -95,7 +94,9 @@ bool ModuleWindow::CleanUp()
 	}
 
 	//Quit SDL subsystems
+
 	SDL_Quit();
+	
 	return true;
 }
 

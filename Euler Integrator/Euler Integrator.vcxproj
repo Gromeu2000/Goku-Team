@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="ModuleApp.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleScene.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="ModuleApp.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Module.h" />
+    <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleScene.h" />
     <ClInclude Include="ModuleTextures.h" />

@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleScene.h"
+#include "ModuleInput.h"
 #include "ModuleApp.h"
 
 // Constructor
@@ -18,6 +19,7 @@ ModuleApp::ModuleApp(int argc, char* args[]) : argc(argc), args(args)
 	tex = new ModuleTextures();
 	physics = new ModulePhysics();
 	scene = new ModuleScene();
+	input = new ModuleInput();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -91,8 +93,8 @@ bool ModuleApp::Update()
 	bool ret = true;
 	PrepareUpdate();
 
-	//if (input->GetWindowEvent(WE_QUIT) == true)
-		//ret = false;
+	if (input->GetWindowEvent(WE_QUIT) == true)
+		ret = false;
 
 	if (ret == true)
 		ret = PreUpdate();
