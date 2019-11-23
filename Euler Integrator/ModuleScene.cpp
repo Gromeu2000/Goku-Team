@@ -52,11 +52,10 @@ bool ModuleScene::PostUpdate()
 {
 	bool ret = true;
 
-	if (App->input->GetKeyDown(SDLK_ESCAPE) == true) {
-		LOG("ESCAPE");
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	{
 		ret = false;
 	}
-
 
 	return ret;
 }

@@ -5,17 +5,22 @@
 #include "ModuleWindow.h"
 #include "SDL/include/SDL.h"
 
+
+#define MAX_KEYS 300
+
 ModuleInput::ModuleInput() : Module()
 {
-	for (int i = 0; i < NUM_MOUSE_BUTTONS; ++i)
-	{
-		mouse_buttons[i] = KS_IDLE;
-	}
+
+	keyboard = new KeyState[MAX_KEYS];
+	memset(keyboard, KEY_IDLE, sizeof(KeyState) * MAX_KEYS);
+	memset(mouse_buttons, KEY_IDLE, sizeof(KeyState) * NUM_MOUSE_BUTTONS);
 }
 
 // Destructor
 ModuleInput::~ModuleInput()
-{}
+{
+	delete[] keyboard;
+}
 
 // Called before render is available
 bool ModuleInput::Awake()
@@ -37,7 +42,6 @@ bool ModuleInput::Awake()
 bool ModuleInput::Start()
 {
 	SDL_StopTextInput();
-	CleanKeys();
 	return true;
 }
 
@@ -45,7 +49,35 @@ bool ModuleInput::Start()
 bool ModuleInput::PreUpdate()
 {
 	static SDL_Event event;
-	CleanKeys();
+
+	const Uint8* keys = SDL_GetKeyboardState(NULL);
+
+	for (int i = 0; i < MAX_KEYS; ++i)
+	{
+		if (keys[i] == 1)
+		{
+			if (keyboard[i] == KEY_IDLE)
+				keyboard[i] = KEY_DOWN;
+			else
+				keyboard[i] = KEY_REPEAT;
+		}
+		else
+		{
+			if (keyboard[i] == KEY_REPEAT || keyboard[i] == KEY_DOWN)
+				keyboard[i] = KEY_UP;
+			else
+				keyboard[i] = KEY_IDLE;
+		}
+	}
+
+	for (int i = 0; i < NUM_MOUSE_BUTTONS; ++i)
+	{
+		if (mouse_buttons[i] == KEY_DOWN)
+			mouse_buttons[i] = KEY_REPEAT;
+
+		if (mouse_buttons[i] == KEY_UP)
+			mouse_buttons[i] = KEY_IDLE;
+	}
 
 	while (SDL_PollEvent(&event) != 0)
 	{
@@ -73,43 +105,15 @@ bool ModuleInput::PreUpdate()
 				windowEvents[WE_SHOW] = true;
 				break;
 			}
-
 			break;
 
-		case SDL_KEYDOWN:
-		case SDL_KEYUP:
-		{
-			int code = event.key.keysym.sym;
-			j1KeyState state = KS_IDLE;
-
-			if (event.key.repeat != 0)
-			{
-				state = KS_REPEAT;
-			}
-			else if (event.key.state == SDL_PRESSED)
-			{
-				state = KS_DOWN;
-			}
-			else
-			{
-				state = KS_UP;
-			}
-
-			if (code > 127)
-			{
-				code -= (127 + 1073741881); // https://wiki.libsdl.org/SDLKeycodeLookup
-			}
-			keyState[code] = state;
-		}
-		break;
-
 		case SDL_MOUSEBUTTONDOWN:
-			mouse_buttons[event.button.button - 1] = KS_DOWN;
+			mouse_buttons[event.button.button - 1] = KEY_DOWN;
 			//LOG("Mouse button %d down", event.button.button-1);
 			break;
 
 		case SDL_MOUSEBUTTONUP:
-			mouse_buttons[event.button.button - 1] = KS_UP;
+			mouse_buttons[event.button.button - 1] = KEY_UP;
 			//LOG("Mouse button %d up", event.button.button-1);
 			break;
 
@@ -136,60 +140,9 @@ bool ModuleInput::CleanUp()
 }
 
 // ---------
-void ModuleInput::CleanKeys()
-{
-	// memset would be faster!
-	for (int i = 0; i < WE_COUNT; ++i)
-	{
-		windowEvents[i] = false;
-	}
-
-	for (int i = 0; i < NUM_KEYS; ++i)
-	{
-		keyState[i] = KS_IDLE;
-	}
-
-	for (int i = 0; i < NUM_MOUSE_BUTTONS; ++i)
-	{
-		(mouse_buttons[i] == KS_DOWN || mouse_buttons[i] == KS_REPEAT) ? mouse_buttons[i] = KS_REPEAT : mouse_buttons[i] = KS_IDLE;
-	}
-
-	mouse_motion_x = mouse_motion_y = 0;
-}
-
-bool ModuleInput::GetWindowEvent(j1EventWindow ev)
+bool ModuleInput::GetWindowEvent(EventWindow ev)
 {
 	return windowEvents[ev];
-}
-
-bool ModuleInput::GetKeyDown(int code)
-{
-	return keyState[code] == KS_DOWN;
-}
-
-bool ModuleInput::GetKeyRepeat(int code)
-{
-	return keyState[code] == KS_REPEAT;
-}
-
-bool ModuleInput::GetKeyUp(int code)
-{
-	return keyState[code] == KS_UP;
-}
-
-bool ModuleInput::GetMouseButtonDown(int code)
-{
-	return mouse_buttons[code - 1] == KS_DOWN;
-}
-
-bool ModuleInput::GetMouseButtonRepeat(int code)
-{
-	return mouse_buttons[code - 1] == KS_REPEAT;
-}
-
-bool ModuleInput::GetMouseButtonUp(int code)
-{
-	return mouse_buttons[code - 1] == KS_UP;
 }
 
 void ModuleInput::GetMousePosition(int& x, int& y)
