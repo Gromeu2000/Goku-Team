@@ -65,7 +65,7 @@ bool ModuleWindow::Awake()
 
 		//TODO 7: Move "Todo 4" code to the awake method on the window module
 		//Pass the title as a variable when creating the window
-		window = SDL_CreateWindow("", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
+		window = SDL_CreateWindow("EULER INTEGRATOR", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
 
 		if (window == NULL)
 		{

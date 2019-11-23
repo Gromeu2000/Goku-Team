@@ -12,6 +12,7 @@ class ModuleWindow;
 class ModuleRender;
 class ModuleTextures;
 class ModulePhysics;
+class ModuleScene;
 
 class ModuleApp
 {
@@ -66,7 +67,7 @@ public:
 	ModuleRender*		render;
 	ModuleTextures*		tex;
 	ModulePhysics*		physics;
-
+	ModuleScene*		scene;
 
 
 private:

@@ -5,6 +5,7 @@
 #include "ModulePhysics.h"
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
+#include "ModuleScene.h"
 #include "ModuleApp.h"
 
 // Constructor
@@ -16,13 +17,14 @@ ModuleApp::ModuleApp(int argc, char* args[]) : argc(argc), args(args)
 	render = new ModuleRender();
 	tex = new ModuleTextures();
 	physics = new ModulePhysics();
-
+	scene = new ModuleScene();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(win);
 	AddModule(tex);
 	AddModule(physics);
+	AddModule(scene);
 
 	// render last to swap buffer
 	AddModule(render);
