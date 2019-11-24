@@ -2,6 +2,9 @@
 #define __MODULESCENE_H__
 
 #include "Module.h"
+#include "ModulePhysics.h"
+
+class vec3d;
 
 class ModuleScene : public Module
 {
@@ -33,6 +36,11 @@ public:
 	SDL_Texture* graphics_B = nullptr;
 	SDL_Rect ball;
 
+	vec3d InitPos;
+	vec3d CurrentPos;
+	vec3d InitVel;
+	vec3d CurrentVel;
+	vec3d Acceleration;
 
 };
 

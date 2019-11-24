@@ -5,6 +5,7 @@
 #include "ModuleTextures.h"
 #include "ModuleScene.h"
 #include "ModuleInput.h"
+#include "ModulePhysics.h"
 
 #include "SDL_image/include/SDL_image.h"
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
@@ -22,6 +23,13 @@ ModuleScene::ModuleScene() : Module()
 	ball.y = 0;
 	ball.w = 100;
 	ball.h = 100;
+
+	InitPos = {0, 650, 0};
+	InitVel = {1000, 0, 0};
+	Acceleration = {-50, 0, 0};
+	CurrentPos = InitPos;
+	CurrentVel = InitVel;
+	
 }
 
 // Destructor
@@ -58,8 +66,11 @@ bool ModuleScene::Update(float dt)
 {
 	bool ret = true;
 
+	
+	App->physics->EulerIntegrator(InitPos,InitVel,CurrentPos,CurrentVel,Acceleration,dt);
+
 	App->render->Blit(graphics, 0, 0, &background);
-	App->render->Blit(graphics_B, 480, 650, &ball);
+	App->render->Blit(graphics_B, CurrentPos.x, CurrentPos.y, &ball);
 
 	return ret;
 }
