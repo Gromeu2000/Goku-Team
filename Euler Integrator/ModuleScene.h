@@ -28,6 +28,12 @@ public:
 
 public:
 
+	SDL_Texture* graphics = nullptr;
+	SDL_Rect background;
+	SDL_Texture* graphics_B = nullptr;
+	SDL_Rect ball;
+
+
 };
 
 #endif // __MODULESCENE_H__

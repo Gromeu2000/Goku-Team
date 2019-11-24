@@ -27,6 +27,7 @@ ModuleApp::ModuleApp(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(physics);
 	AddModule(scene);
+	AddModule(input);
 
 	// render last to swap buffer
 	AddModule(render);

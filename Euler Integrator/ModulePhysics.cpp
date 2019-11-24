@@ -35,7 +35,7 @@ bool ModulePhysics::CleanUp()
 	return true;
 }
 
-void ModulePhysics::EulerIntegrator(vec3d& iposition, vec3d& ivelocity, vec3d& fposition, vec3d& fvelocity, vec3d& acceleration, float dt)
+void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d & fposition, vec3d & fvelocity, vec3d acceleration, float dt)
 {
 	if (acceleration.x == 0.0 && acceleration.y == 0.0 && acceleration.z == 0.0)
 	{
@@ -49,9 +49,9 @@ void ModulePhysics::EulerIntegrator(vec3d& iposition, vec3d& ivelocity, vec3d& f
 		iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
 		iposition.z = fposition.z;							//Resets the object's initial position in the Y axis to the new position.
 
-		fvelocity.x = ivelocity.x ;							//Gets the object's final velocity in the X axis.
-		fvelocity.y = ivelocity.y ;							//Gets the object's final velocity in the Y axis.
-		fvelocity.z = ivelocity.z ;							//Gets the object's final velocity in the Z axis.
+		fvelocity.x = ivelocity.x;							//Gets the object's final velocity in the X axis.
+		fvelocity.y = ivelocity.y;							//Gets the object's final velocity in the Y axis.
+		fvelocity.z = ivelocity.z;							//Gets the object's final velocity in the Z axis.
 	}
 	else
 	{
@@ -75,6 +75,7 @@ void ModulePhysics::EulerIntegrator(vec3d& iposition, vec3d& ivelocity, vec3d& f
 
 	}
 }
+
 
 
 

@@ -13,6 +13,15 @@
 
 ModuleScene::ModuleScene() : Module()
 {
+	background.x = 0;
+	background.y = 0;
+	background.w = 1024;
+	background.h = 827;
+
+	ball.x = 0;
+	ball.y = 0;
+	ball.w = 100;
+	ball.h = 100;
 }
 
 // Destructor
@@ -31,6 +40,10 @@ bool ModuleScene::Awake()
 bool ModuleScene::Start()
 {
 	LOG("Start Scene");
+
+	graphics = App->tex->Load("Sprites/Back.jpg");
+	graphics_B = App->tex->Load("Sprites/ball.png");
+
 	bool ret = true;
 	return ret;
 }
@@ -44,6 +57,9 @@ bool ModuleScene::PreUpdate()
 bool ModuleScene::Update(float dt)
 {
 	bool ret = true;
+
+	App->render->Blit(graphics, 0, 0, &background);
+	App->render->Blit(graphics_B, 480, 650, &ball);
 
 	return ret;
 }
