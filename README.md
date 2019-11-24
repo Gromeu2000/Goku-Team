@@ -4,7 +4,6 @@
 - Adrian Mirabel https://github.com/M1R4B3L
 - Marc San Jose https://github.com/marcsjm19
 - Gerard Romeu  https://github.com/Gromeu2000
-- Albert Espinosa https://github.com/albertec1
 - Marc Gallardo https://github.com/Marchusky
 - Marc Ariza  https://github.com/MarcArizaAlborni
  -Angel González https://github.com/BarcinoLechiguino
