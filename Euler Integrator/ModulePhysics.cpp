@@ -80,6 +80,26 @@ void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d 
 				ivelocity.z = fvelocity.z;							//Resets the object's initial velocity in the Z axis to the new velocity.
 
 			}
+			else if (fposition.x > 924)
+			{
+				fposition.x = 924;
+
+				iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
+				iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
+				iposition.z = fposition.z;							//Resets the object's initial position in the Y axis to the new position.
+
+				fvelocity.x = ivelocity.x + acceleration.x * dt;	//Gets the object's final velocity in the X axis.
+				if (fvelocity.y < 0) {
+
+					fvelocity.y = 0;
+				}
+				fvelocity.y = -ivelocity.y + acceleration.y * dt;	//Gets the object's final velocity in the Y axis.
+				fvelocity.z = ivelocity.z + acceleration.z * dt;	//Gets the object's final velocity in the Z axis.
+
+				ivelocity.x = fvelocity.x;							//Resets the object's initial velocity in the X axis to the new velocity.
+				ivelocity.y = fvelocity.y;							//Resets the object's initial velocity in the Y axis to the new velocity.
+				ivelocity.z = fvelocity.z;							//Resets the object's initial velocity in the Z axis to the new velocity.
+			}
 			else
 			{
 				iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
