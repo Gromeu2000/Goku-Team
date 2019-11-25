@@ -37,17 +37,13 @@ bool ModulePhysics::CleanUp()
 
 vec3d ModulePhysics::Forces(vec3d& iacceleration, vec3d& facceleration)
 {
-	vec3d Ffregament = { 0.0f, 0.0f, 0.0f };
-	vec3d Faeordinamica = { 0.0f, 0.0f, 0.0f }; //La y es negativa por la pantalla
+	vec3d Ffregament = { 25.0f, 0.0f, 0.0f };
+	vec3d Faeordinamica = { 25.0f, 0.0f, 0.0f }; //La y es negativa por la pantalla
 	float mass = 1.0f;
 
-	iacceleration.x = iacceleration.x*(-1) + Ffregament.x*(-1) + Faeordinamica.x*(-1);
-	iacceleration.y = iacceleration.y + Ffregament.y + Faeordinamica.y;
-	iacceleration.z = iacceleration.z*(-1) + Ffregament.z*(-1) + Faeordinamica.z*(-1);
-
-	facceleration.x = iacceleration.x;
-	facceleration.y = iacceleration.y;
-	facceleration.z = iacceleration.z;
+	facceleration.x = iacceleration.x*(-1) + Ffregament.x*(-1) + Faeordinamica.x*(-1);
+	facceleration.y = iacceleration.y + Ffregament.y + Faeordinamica.y;
+	facceleration.z = iacceleration.z*(-1) + Ffregament.z*(-1) + Faeordinamica.z*(-1);
 
 	return facceleration;
 }
@@ -62,18 +58,44 @@ void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d 
 		fposition.y = iposition.y + ivelocity.y * dt + 0.5 * acceleration.y * (dt * dt); 		//Gets the object's final position in the Y axis.
 		fposition.z = iposition.z + ivelocity.z * dt + 0.5 * acceleration.z * (dt * dt);		//Gets the object's final position in the Z axis.
 
-		iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
-		iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
-		iposition.z = fposition.z;							//Resets the object's initial position in the Y axis to the new position.
+		if (fvelocity.x > 0) {
+			if (fposition.y > 650)
+			{
+				fposition.y = 650;
 
-		fvelocity.x = ivelocity.x + acceleration.x * dt;	//Gets the object's final velocity in the X axis.
-		fvelocity.y = ivelocity.y + acceleration.y * dt;	//Gets the object's final velocity in the Y axis.
-		fvelocity.z = ivelocity.z + acceleration.z * dt;	//Gets the object's final velocity in the Z axis.
+				iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
+				iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
+				iposition.z = fposition.z;							//Resets the object's initial position in the Y axis to the new position.
 
-		ivelocity.x = fvelocity.x;							//Resets the object's initial velocity in the X axis to the new velocity.
-		ivelocity.y = fvelocity.y;							//Resets the object's initial velocity in the Y axis to the new velocity.
-		ivelocity.z = fvelocity.z;							//Resets the object's initial velocity in the Z axis to the new velocity.
-	
+				fvelocity.x = ivelocity.x + acceleration.x * dt;	//Gets the object's final velocity in the X axis.
+				if (fvelocity.y < 0) {
+
+					fvelocity.y = 0;
+				}
+				fvelocity.y = -ivelocity.y + acceleration.y * dt;	//Gets the object's final velocity in the Y axis.
+				fvelocity.z = ivelocity.z + acceleration.z * dt;	//Gets the object's final velocity in the Z axis.
+
+				ivelocity.x = fvelocity.x;							//Resets the object's initial velocity in the X axis to the new velocity.
+				ivelocity.y = fvelocity.y;							//Resets the object's initial velocity in the Y axis to the new velocity.
+				ivelocity.z = fvelocity.z;							//Resets the object's initial velocity in the Z axis to the new velocity.
+
+			}
+			else
+			{
+				iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
+				iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
+				iposition.z = fposition.z;							//Resets the object's initial position in the Y axis to the new position.
+
+				//fvelocity.x = ivelocity.x + acceleration.x * dt;	//Gets the object's final velocity in the X axis.
+				fvelocity.y = ivelocity.y + acceleration.y * dt;	//Gets the object's final velocity in the Y axis.
+				fvelocity.z = ivelocity.z + acceleration.z * dt;	//Gets the object's final velocity in the Z axis.
+
+				ivelocity.x = fvelocity.x;							//Resets the object's initial velocity in the X axis to the new velocity.
+				ivelocity.y = fvelocity.y;							//Resets the object's initial velocity in the Y axis to the new velocity.
+				ivelocity.z = fvelocity.z;							//Resets the object's initial velocity in the Z axis to the new velocity.
+
+			}
+		}
 }
 
 
