@@ -57,7 +57,14 @@ void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d 
 		fposition.y = iposition.y + ivelocity.y * dt + 0.5 * acceleration.y * (dt * dt); 		//Gets the object's final position in the Y axis.
 		fposition.z = iposition.z + ivelocity.z * dt + 0.5 * acceleration.z * (dt * dt);		//Gets the object's final position in the Z axis.
 
-		if (fposition.x < 924) {
+		if (fvelocity.x <1 && fvelocity.x>-1 ) {
+			LOG("STOOP");
+			ivelocity.x = 0;
+			fvelocity.x = 0;
+			acceleration.x=0;
+		}
+
+		if (fposition.x < 924 ) {
 			if (fposition.y > 650)
 			{
 				fposition.y = 650;
@@ -65,7 +72,7 @@ void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d 
 				iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
 				iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
 				iposition.z = fposition.z;							//Resets the object's initial position in the Y axis to the new position.
-
+				
 				fvelocity.x = ivelocity.x + acceleration.x * dt;	//Gets the object's final velocity in the X axis.
 				if (fvelocity.y < 0) {
 
@@ -80,19 +87,18 @@ void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d 
 
 			}
 		}
-		else {
-			rebound = true;
-		}
+		
 
-	    if (fposition.x >= 924 && rebound==true){
-				LOG("REBOUND ");
-			fposition.x = 924;
+	    if (fposition.x > 924 ){
+				LOG("REBOUND RIGHT TO LEFT ");
+			
+
 
 				iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
 				iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
 				iposition.z = fposition.z;							//Resets the object's initial position in the Y axis to the new position.
 
-				fvelocity.x = -(ivelocity.x + acceleration.x * dt);	//Gets the object's final velocity in the X axis.
+				fvelocity.x = -(ivelocity.x - acceleration.x * dt) ; //DRAG FORCE 0.9;	//Gets the object's final velocity in the X axis.
 				if (fvelocity.y < 0) {
 
 					fvelocity.y = 0;
@@ -103,6 +109,26 @@ void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d 
 				ivelocity.x = fvelocity.x;							//Resets the object's initial velocity in the X axis to the new velocity.
 				ivelocity.y = fvelocity.y;							//Resets the object's initial velocity in the Y axis to the new velocity.
 				ivelocity.z = fvelocity.z;							//Resets the object's initial velocity in the Z axis to the new velocity.
+		}
+		else if (fposition.x < 0) {
+			fposition.y = 650;
+			LOG("REBOUND LEFT TO RIGHT");
+
+			iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
+			iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
+			iposition.z = fposition.z;							//Resets the object's initial position in the Y axis to the new position.
+
+			fvelocity.x = -(ivelocity.x + acceleration.x * dt) *(0.8); //DRAG FORCE 0.9;	//Gets the object's final velocity in the X axis.
+			if (fvelocity.y < 0) {
+
+				fvelocity.y = 0;
+			}
+			fvelocity.y = -ivelocity.y + acceleration.y * dt;	//Gets the object's final velocity in the Y axis.
+			fvelocity.z = ivelocity.z + acceleration.z * dt;	//Gets the object's final velocity in the Z axis.
+
+			ivelocity.x = fvelocity.x;							//Resets the object's initial velocity in the X axis to the new velocity.
+			ivelocity.y = fvelocity.y;							//Resets the object's initial velocity in the Y axis to the new velocity.
+			ivelocity.z = fvelocity.z;
 		}
 		else
 		{
