@@ -54,6 +54,7 @@ public:
 	vec3d Forces(vec3d& iacceleration, vec3d& facceleration);
 	void EulerIntegrator(vec3d& iposition, vec3d& ivelocity, vec3d& fposition, vec3d& fvelocity, vec3d acceleration, float dt);
 	bool touch_floor = false;
+	bool rebound = false;
 
 };
 
