@@ -40,7 +40,8 @@ public:
 	vec3d CurrentPos;
 	vec3d InitVel;
 	vec3d CurrentVel;
-	vec3d Acceleration;
+	vec3d InitAccel;
+	vec3d CurrentAccel;
 
 };
 

@@ -25,10 +25,11 @@ ModuleScene::ModuleScene() : Module()
 	ball.h = 100;
 
 	InitPos = {0, 0, 0};
-	InitVel = {10, 10, 0};
-	Acceleration = {0, 0, 0};
+	InitVel = {100, 0, 0};
+	InitAccel = {0, 980, 0};
 	CurrentPos = InitPos;
 	CurrentVel = InitVel;
+	CurrentAccel = InitAccel;
 	
 }
 
@@ -66,8 +67,8 @@ bool ModuleScene::Update(float dt)
 {
 	bool ret = true;
 
-	
-	App->physics->EulerIntegrator(InitPos,InitVel,CurrentPos,CurrentVel,Acceleration,dt);
+	App->physics->Forces(InitAccel, CurrentAccel);
+	App->physics->EulerIntegrator(InitPos,InitVel,CurrentPos,CurrentVel,CurrentAccel,dt);
 
 	App->render->Blit(graphics, 0, 0, &background);
 	App->render->Blit(graphics_B, CurrentPos.x, CurrentPos.y, &ball);

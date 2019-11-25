@@ -37,14 +37,20 @@ bool ModulePhysics::CleanUp()
 
 vec3d ModulePhysics::Forces(vec3d& iacceleration, vec3d& facceleration)
 {
+	vec3d Ffregament = { 0.0f, 0.0f, 0.0f };
+	vec3d Faeordinamica = { 0.0f, 0.0f, 0.0f }; //La y es negativa por la pantalla
+	float gravity = 980.0f;
+	float mass = 1.0f;
 
-	//SUMATORIO DE FUERZAS = MASS * ACC
+	iacceleration.x = iacceleration.x*(-1) + Ffregament.x*(-1) + Faeordinamica.x*(-1);
+	iacceleration.y = iacceleration.y + Ffregament.y + Faeordinamica.y + gravity;
+	iacceleration.z = iacceleration.z*(-1) + Ffregament.z*(-1) + Faeordinamica.z*(-1);
 
-
-	//return facceleration;
+	facceleration.x = iacceleration.x;
+	facceleration.y = iacceleration.y;
+	facceleration.z = iacceleration.z;
 
 	return facceleration;
-
 }
 
 void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d & fposition, vec3d & fvelocity, vec3d acceleration, float dt)
@@ -52,15 +58,6 @@ void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d 
 
 		//y = yo + vo * dt + 0.5 * g * dt * dt
 		//v = vo + a * dt
-
-		vec3d Ffregament = {0,0,0};
-		vec3d Faeordinamica = {0,0,0};
-		float gravity = 9.8;
-		float mass = 1;
-
-		acceleration.x =+ ((-1)*Ffregament.x) + ((-1)*Faeordinamica.x) / mass;
-		acceleration.y =- ((-1)*Ffregament.y) + ((-1)*Faeordinamica.y) + gravity / mass;
-		acceleration.z =+ ((-1)*Ffregament.z) + ((-1)*Faeordinamica.z) / mass;
 
 		fposition.x = iposition.x + ivelocity.x * dt + 0.5 * acceleration.x * (dt * dt);		//Gets the object's final position in the X axis.
 		fposition.y = iposition.y + ivelocity.y * dt + 0.5 * acceleration.y * (dt * dt); 		//Gets the object's final position in the Y axis.
