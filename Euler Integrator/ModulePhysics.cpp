@@ -39,11 +39,10 @@ vec3d ModulePhysics::Forces(vec3d& iacceleration, vec3d& facceleration)
 {
 	vec3d Ffregament = { 0.0f, 0.0f, 0.0f };
 	vec3d Faeordinamica = { 0.0f, 0.0f, 0.0f }; //La y es negativa por la pantalla
-	float gravity = 980.0f;
 	float mass = 1.0f;
 
 	iacceleration.x = iacceleration.x*(-1) + Ffregament.x*(-1) + Faeordinamica.x*(-1);
-	iacceleration.y = iacceleration.y + Ffregament.y + Faeordinamica.y + gravity;
+	iacceleration.y = iacceleration.y + Ffregament.y + Faeordinamica.y;
 	iacceleration.z = iacceleration.z*(-1) + Ffregament.z*(-1) + Faeordinamica.z*(-1);
 
 	facceleration.x = iacceleration.x;

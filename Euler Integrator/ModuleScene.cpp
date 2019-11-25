@@ -26,7 +26,8 @@ ModuleScene::ModuleScene() : Module()
 
 	InitPos = {0, 0, 0};
 	InitVel = {100, 0, 0};
-	InitAccel = {0, 980, 0};
+	float gravity = 980.0f;
+	InitAccel = {0, gravity, 0};
 	CurrentPos = InitPos;
 	CurrentVel = InitVel;
 	CurrentAccel = InitAccel;
@@ -69,6 +70,12 @@ bool ModuleScene::Update(float dt)
 
 	App->physics->Forces(InitAccel, CurrentAccel);
 	App->physics->EulerIntegrator(InitPos,InitVel,CurrentPos,CurrentVel,CurrentAccel,dt);
+
+	if (CurrentPos.y > 650)
+	{
+		CurrentPos.y = 650;
+		CurrentVel.y = -CurrentVel.y;
+	}
 
 	App->render->Blit(graphics, 0, 0, &background);
 	App->render->Blit(graphics_B, CurrentPos.x, CurrentPos.y, &ball);
