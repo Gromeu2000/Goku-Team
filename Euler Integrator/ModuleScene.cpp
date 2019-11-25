@@ -24,9 +24,9 @@ ModuleScene::ModuleScene() : Module()
 	ball.w = 100;
 	ball.h = 100;
 
-	InitPos = {0, 650, 0};
-	InitVel = {1000, 0, 0};
-	Acceleration = {-50, 0, 0};
+	InitPos = {0, 0, 0};
+	InitVel = {10, 10, 0};
+	Acceleration = {0, 0, 0};
 	CurrentPos = InitPos;
 	CurrentVel = InitVel;
 	
