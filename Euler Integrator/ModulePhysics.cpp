@@ -37,13 +37,15 @@ bool ModulePhysics::CleanUp()
 
 vec3d ModulePhysics::Forces(vec3d& iacceleration, vec3d& facceleration)
 {
-	vec3d Ffregament = { 25.0f, 0.0f, 0.0f };
-	vec3d Faeordinamica = { 25.0f, 0.0f, 0.0f }; //La y es negativa por la pantalla
+	vec3d Ffriction = { 25.0f, 0.0f, 0.0f };
+	vec3d Faeordinamic = { 25.0f, 0.0f, 0.0f }; 
 	float mass = 1.0f;
 
-	facceleration.x = iacceleration.x*(-1) + Ffregament.x*(-1) + Faeordinamica.x*(-1);
-	facceleration.y = iacceleration.y + Ffregament.y + Faeordinamica.y;
-	facceleration.z = iacceleration.z*(-1) + Ffregament.z*(-1) + Faeordinamica.z*(-1);
+	//The y is contrary caused by the screen
+
+	facceleration.x = iacceleration.x*(-1) + Ffriction.x*(-1) + Faeordinamic.x*(-1);
+	facceleration.y = iacceleration.y + Ffriction.y + Faeordinamic.y;
+	facceleration.z = iacceleration.z*(-1) + Ffriction.z*(-1) + Faeordinamic.z*(-1);
 
 	return facceleration;
 }
