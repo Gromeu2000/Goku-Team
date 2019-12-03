@@ -59,12 +59,28 @@ vec3d ModulePhysics::Forces(vec3d& iacceleration, vec3d& facceleration)
 
 void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d & fposition, vec3d & fvelocity, vec3d acceleration, float dt)
 {
+	//-------------------------------------- EULER INTEGRATOR CORE --------------------------------------
 	//y = yo + vo * dt
 	//v = vo + a * dt
 	fposition.x = iposition.x + ivelocity.x * dt;		//Gets the object's final position in the X axis.
 	fposition.y = iposition.y + ivelocity.y * dt;		//Gets the object's final position in the Y axis.
 	fposition.z = iposition.z + ivelocity.z * dt;		//Gets the object's final position in the Z axis.
 
+	iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
+	iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
+	iposition.z = fposition.z;							//Resets the object's initial position in the Y axis to the new position.
+
+	fvelocity.x = ivelocity.x + acceleration.x * dt;	//Gets the object's final velocity in the X axis.
+	fvelocity.y = ivelocity.y + acceleration.y * dt;	//Gets the object's final velocity in the Y axis.
+	fvelocity.z = ivelocity.z + acceleration.z * dt;	//Gets the object's final velocity in the Z axis.
+
+	ivelocity.x = fvelocity.x;							//Resets the object's initial velocity in the X axis to the new velocity.
+	ivelocity.y = fvelocity.y;							//Resets the object's initial velocity in the Y axis to the new velocity.
+	ivelocity.z = fvelocity.z;							//Resets the object's initial velocity in the Z axis to the new velocity.
+
+	//---------------------------------------------------------------------------------------------------
+
+	/* To delete?
 	if (fvelocity.x <1 && fvelocity.x>-1) {
 		LOG("STOOP");
 		ivelocity.x = 0;
@@ -151,7 +167,7 @@ void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d 
 		ivelocity.y = fvelocity.y;							//Resets the object's initial velocity in the Y axis to the new velocity.
 		ivelocity.z = fvelocity.z;							//Resets the object's initial velocity in the Z axis to the new velocity.
 
-	}		
+	}*/		
 }
 
 

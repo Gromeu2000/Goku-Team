@@ -1,14 +1,12 @@
 #ifndef __MODULEPHYSICS_H__
 #define __MODULEPHYSICS_H__
 
-
 #include "ModuleApp.h"
 #include "Globals.h"
 #include "p2Point.h"
 #include "p2List.h"
 #include "Module.h"
 #include "p2SString.h"
-
 
 class vec3d					//Class that will be used to declare 3D Vectors.
 {
@@ -54,30 +52,6 @@ public:
 	
 	bool touch_floor = false;
 	bool rebound = false;
-
-
-	//-------------------------------------- EULER INTEGRATOR CORE --------------------------------------
-	//y = yo + vo * dt
-	//v = vo + a * dt
-	fposition.x = iposition.x + ivelocity.x * dt;		//Gets the object's final position in the X axis.
-	fposition.y = iposition.y + ivelocity.y * dt;		//Gets the object's final position in the Y axis.
-	fposition.z = iposition.z + ivelocity.z * dt;		//Gets the object's final position in the Z axis.
-
-	iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
-	iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
-	iposition.z = fposition.z;							//Resets the object's initial position in the Y axis to the new position.
-
-	fvelocity.x = ivelocity.x + acceleration.x * dt;	//Gets the object's final velocity in the X axis.
-	fvelocity.y = ivelocity.y + acceleration.y * dt;	//Gets the object's final velocity in the Y axis.
-	fvelocity.z = ivelocity.z + acceleration.z * dt;	//Gets the object's final velocity in the Z axis.
-
-	ivelocity.x = fvelocity.x;							//Resets the object's initial velocity in the X axis to the new velocity.
-	ivelocity.y = fvelocity.y;							//Resets the object's initial velocity in the Y axis to the new velocity.
-	ivelocity.z = fvelocity.z;							//Resets the object's initial velocity in the Z axis to the new velocity.
-
-	//---------------------------------------------------------------------------------------------------
 };
-
-
 
 #endif // __MODULEPHYSICS_H__
