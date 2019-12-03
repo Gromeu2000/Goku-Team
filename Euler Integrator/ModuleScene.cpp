@@ -25,8 +25,8 @@ ModuleScene::ModuleScene() : Module()
 	ball.h = 100;
 
 	InitPos = {0, 0, 0};
-	InitVel = {500, 0, 0};
-	float gravity = 9800.0f;
+	InitVel = {50, 0, 0};
+	float gravity = 98.0f;
 	InitAccel = {0, gravity, 0};
 	CurrentPos = InitPos;
 	CurrentVel = InitVel;
