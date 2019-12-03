@@ -37,15 +37,22 @@ bool ModulePhysics::CleanUp()
 
 vec3d ModulePhysics::Forces(vec3d& iacceleration, vec3d& facceleration)
 {
-	vec3d Ffriction = { 25.0f, 0.0f, 0.0f };
-	vec3d Faeordinamic = { 25.0f, 0.0f, 0.0f }; 
-	float mass = 1.0f;
+	float mass = 20.0f;
+
+	vec3d Ffriction;
+	float mu = 0.3f;
+	Ffriction.x = mu * mass * iacceleration.y;
+
+	vec3d Faeordinamic; 
+	Faeordinamic.y = 25.0f;
 
 	//The y is contrary caused by the screen
 
-	facceleration.x = iacceleration.x*(-1) + Ffriction.x*(-1) + Faeordinamic.x*(-1);
-	facceleration.y = iacceleration.y + Ffriction.y + Faeordinamic.y;
-	facceleration.z = iacceleration.z*(-1) + Ffriction.z*(-1) + Faeordinamic.z*(-1);
+	// Friction Force
+	facceleration.x = iacceleration.x + (-Ffriction.x) / mass;
+
+	// Aerodinamic Force
+	facceleration.y = iacceleration.y + Faeordinamic.y / mass; 
 
 	return facceleration;
 }
@@ -62,8 +69,6 @@ void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d 
 		LOG("STOOP");
 		ivelocity.x = 0;
 		fvelocity.x = 0;
-		acceleration.x = 0;
-
 	}
 
 	if (fposition.x <= 924) {
@@ -138,7 +143,7 @@ void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d 
 		iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
 		iposition.z = fposition.z;							//Resets the object's initial position in the Y axis to the new position.
 
-		//fvelocity.x = ivelocity.x + acceleration.x * dt;	//Gets the object's final velocity in the X axis.
+		fvelocity.x = ivelocity.x + acceleration.x * dt;	//Gets the object's final velocity in the X axis.
 		fvelocity.y = ivelocity.y + acceleration.y * dt;	//Gets the object's final velocity in the Y axis.
 		fvelocity.z = ivelocity.z + acceleration.z * dt;	//Gets the object's final velocity in the Z axis.
 
