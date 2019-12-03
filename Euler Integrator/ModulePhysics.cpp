@@ -57,7 +57,7 @@ vec3d ModulePhysics::Forces(vec3d& iacceleration, vec3d& facceleration)
 	return facceleration;
 }
 
-void ModulePhysics::EulerIntegrator(vec3d & iposition, vec3d & ivelocity, vec3d & fposition, vec3d & fvelocity, vec3d acceleration, float dt)
+void ModulePhysics::EulerIntegrator(vec3d& iposition, vec3d& ivelocity, vec3d& fposition, vec3d& fvelocity, vec3d acceleration, float dt)
 {
 	//-------------------------------------- EULER INTEGRATOR CORE --------------------------------------
 	//y = yo + vo * dt
