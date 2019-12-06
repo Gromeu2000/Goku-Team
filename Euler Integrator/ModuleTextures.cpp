@@ -36,7 +36,7 @@ bool ModuleTextures::Awake()
 // Called before the first frame
 bool ModuleTextures::Start()
 {
-	LOG("start textures");
+	//LOG("start textures");
 	bool ret = true;
 	return ret;
 }
@@ -44,7 +44,7 @@ bool ModuleTextures::Start()
 // Called before quitting
 bool ModuleTextures::CleanUp()
 {
-	LOG("Freeing textures and Image library");
+	//LOG("Freeing textures and Image library");
 	p2List_item<SDL_Texture*>* item;
 
 	for (item = textures.start; item != NULL; item = item->next)

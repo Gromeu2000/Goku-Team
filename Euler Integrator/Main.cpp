@@ -37,7 +37,7 @@ int main(int argc, char* args[])
 
 			// Allocate the engine --------------------------------------------
 		case CREATE:
-			LOG("CREATION PHASE ===============================");
+			//LOG("CREATION PHASE ===============================");
 
 			App = new ModuleApp(argc, args);
 
@@ -50,12 +50,12 @@ int main(int argc, char* args[])
 
 			// Awake all modules -----------------------------------------------
 		case AWAKE:
-			LOG("AWAKE PHASE ===============================");
+			//LOG("AWAKE PHASE ===============================");
 			if (App->Awake() == true)
 				state = START;
 			else
 			{
-				LOG("ERROR: Awake failed");
+			//	LOG("ERROR: Awake failed");
 				state = FAIL;
 			}
 
@@ -63,16 +63,16 @@ int main(int argc, char* args[])
 
 			// Call all modules before first frame  ----------------------------
 		case START:
-			LOG("START PHASE ===============================");
+			//LOG("START PHASE ===============================");
 			if (App->Start() == true)
 			{
 				state = LOOP;
-				LOG("UPDATE PHASE ===============================");
+			//	LOG("UPDATE PHASE ===============================");
 			}
 			else
 			{
 				state = FAIL;
-				LOG("ERROR: Start failed");
+			//	LOG("ERROR: Start failed");
 			}
 			break;
 
@@ -84,7 +84,7 @@ int main(int argc, char* args[])
 
 			// Cleanup allocated memory -----------------------------------------
 		case CLEAN:
-			LOG("CLEANUP PHASE ===============================");
+			//LOG("CLEANUP PHASE ===============================");
 			if (App->CleanUp() == true)
 			{
 				RELEASE(App);

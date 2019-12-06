@@ -107,6 +107,7 @@ bool ModuleApp::Update()
 		ret = PostUpdate();
 
 	FinishUpdate();
+
 	return ret;
 }
 

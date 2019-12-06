@@ -21,7 +21,7 @@ ModuleRender::~ModuleRender()
 // Called before render is available
 bool ModuleRender::Awake()
 {
-	LOG("Create SDL rendering context");
+	//LOG("Create SDL rendering context");
 	bool ret = true;
 
 	renderer = SDL_CreateRenderer(App->win->window, -1, VSYNC);
@@ -45,7 +45,7 @@ bool ModuleRender::Awake()
 // Called before the first frame
 bool ModuleRender::Start()
 {
-	LOG("render start");
+	//LOG("render start");
 	// back background
 	SDL_RenderGetViewport(renderer, &viewport);
 	return true;
@@ -73,7 +73,7 @@ bool ModuleRender::PostUpdate()
 // Called before quitting
 bool ModuleRender::CleanUp()
 {
-	LOG("Destroying SDL render");
+	//LOG("Destroying SDL render");
 	SDL_DestroyRenderer(renderer);
 	return true;
 }

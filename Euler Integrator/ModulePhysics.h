@@ -45,8 +45,6 @@ public:
 
 public:
 
-	vec3d Forces(vec3d& iacceleration, vec3d& facceleration);
-	
 	//Core function of the Integrator. Receives an initial position and velocity, and returns their final values. Moreover an acceleration and a time value is received as well.
 	void EulerIntegrator(vec3d& iposition, vec3d& ivelocity, vec3d& fposition, vec3d& fvelocity, vec3d acceleration, float dt);
 	

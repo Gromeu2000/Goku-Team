@@ -6,6 +6,7 @@
 #include "ModuleScene.h"
 #include "ModuleInput.h"
 #include "ModulePhysics.h"
+#include "p2Log.h"
 
 #include "SDL_image/include/SDL_image.h"
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
@@ -24,14 +25,24 @@ ModuleScene::ModuleScene() : Module()
 	ball.w = 100;
 	ball.h = 100;
 
-	InitPos = {0, 0, 0};
-	InitVel = {50, 0, 0};
-	float gravity = 98.0f;
-	InitAccel = {0, gravity, 0};
+	//Initial Position
+	InitPos.x = 0.0f;			//Position in the 'x' axis
+	InitPos.y = 0.0f;			//Position in the 'y' axis 
+	InitPos.z = 0.0f;			//Position in the 'z' axis
+
+	//Initial Velocity
+	InitVel.x = 0.0f;			//Velocity in the 'x' axis
+	InitVel.y = 0.0f;			//Velocity in the 'y' axis 
+	InitVel.z = 0.0f;			//Velocity in the 'z' axis
+
+	//Initial Acceleration
+	float gravity = 10.0f;
+	InitAccel.x = 0.0f;			//Acceleration in the 'x' axis
+	InitAccel.y = gravity;		//Acceleration in the 'y' axis == gravity
+	InitAccel.z = 0.0f;			//Acceleration in the 'z' axis
+
 	CurrentPos = InitPos;
 	CurrentVel = InitVel;
-	CurrentAccel = InitAccel;
-	
 }
 
 // Destructor
@@ -49,11 +60,25 @@ bool ModuleScene::Awake()
 // Called before the first frame
 bool ModuleScene::Start()
 {
-	LOG("Start Scene");
+	//LOG("Start Scene");
 
 	graphics = App->tex->Load("Sprites/Back.jpg");
 	graphics_B = App->tex->Load("Sprites/ball.png");
 
+	LOG("EULER INTEGRATOR:");
+	LOG("Initial Position X = %f", InitPos.x);
+	LOG("Initial Position Y = %f", InitPos.y);
+	LOG("Initial Position Z = %f", InitPos.z);
+
+	LOG("Initial Velocity X = %f", InitVel.x);
+	LOG("Initial Velocity Y = %f", InitVel.y);
+	LOG("Initial Velocity Z = %f", InitVel.z);
+
+	LOG("Initial Acceleration X = %f", InitAccel.x);
+	LOG("Initial Acceleration Y = %f", InitAccel.y);
+	LOG("Initial Acceleration Z = %f", InitAccel.z);
+
+	LOG("---------------------------------------------------------------------------------------------------");
 	bool ret = true;
 	return ret;
 }
@@ -68,11 +93,16 @@ bool ModuleScene::Update(float dt)
 {
 	bool ret = true;
 
-	App->physics->Forces(InitAccel, CurrentAccel);
-	App->physics->EulerIntegrator(InitPos, InitVel, CurrentPos, CurrentVel, CurrentAccel, dt);
+	App->physics->EulerIntegrator(InitPos, InitVel, CurrentPos, CurrentVel, InitAccel, dt);
 
 	App->render->Blit(graphics, 0, 0, &background);
 	App->render->Blit(graphics_B, CurrentPos.x, CurrentPos.y, &ball);
+
+	if (CurrentPos.y > 650.0f)
+	{
+		CurrentVel.y = -CurrentVel.y;
+
+	}
 
 	return ret;
 }
