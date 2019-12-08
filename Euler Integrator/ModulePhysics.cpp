@@ -110,7 +110,6 @@ void ModulePhysics::EulerIntegrator(vec3d& iposition, vec3d& ivelocity, vec3d& f
 	}
 	if (fvelocity.x < 19.85 && rebound==true) {
 		fvelocity.y = 0;
-		fvelocity.x = 0;
 		fposition.y = 650;
 	}
 
