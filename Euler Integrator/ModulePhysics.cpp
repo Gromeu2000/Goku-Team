@@ -78,16 +78,6 @@ void ModulePhysics::EulerIntegrator(vec3d& iposition, vec3d& ivelocity, vec3d& f
 	fposition.x = iposition.x + ivelocity.x * dt;		//Gets the object's final position in the X axis.
 	
 	
-	iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
-	iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
-
-	fvelocity.x = ivelocity.x + acceleration.x  * dt;			//Gets the object's final velocity in the X axis.
-		
-
-	if (fvelocity.x < 0)
-	{
-		fvelocity.x = 0;
-	}
 	if (fvelocity.y <= 0) {
 		touch_floor = false;
 	}
@@ -111,8 +101,16 @@ void ModulePhysics::EulerIntegrator(vec3d& iposition, vec3d& ivelocity, vec3d& f
 	if (fposition.y >= 650) {
 
 		touch_floor=true;
-
+		fvelocity.x = ivelocity.x + acceleration.x  * dt;			//Gets the object's final velocity in the X axis.
+		if (fvelocity.x < 0)
+		{
+			fvelocity.x = 0;
+		}
 	}
+
+	iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
+	iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
+
 	LOG("Dt %f", dt);
 
 	LOG("Position X = %f", fposition.x);
