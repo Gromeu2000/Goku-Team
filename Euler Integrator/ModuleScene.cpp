@@ -36,7 +36,7 @@ ModuleScene::ModuleScene() : Module()
 	InitVel.z = 0.0f;			//Velocity in the 'z' axis
 
 	//Initial Acceleration
-	float gravity = 10.0f;
+	float gravity = 50.0f;
 	InitAccel.x = 2.0f;			//Acceleration in the 'x' axis
 	InitAccel.y = gravity;		//Acceleration in the 'y' axis == gravity
 	InitAccel.z = 0.0f;			//Acceleration in the 'z' axis
