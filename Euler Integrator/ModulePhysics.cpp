@@ -63,7 +63,7 @@ void ModulePhysics::EulerIntegrator(vec3d& iposition, vec3d& ivelocity, vec3d& f
 	//Friction Force
 	vec3d Ffriction{ 0,0,0 };
 	float mu = 0.3f;  //Friction Coeficient
-	Ffriction.x = mu * mass;
+	Ffriction.x = -(mu * mass);
 
 	//Aerodinamic Force
 	vec3d Faerodinamic{ 0,0,0 };
@@ -74,39 +74,18 @@ void ModulePhysics::EulerIntegrator(vec3d& iposition, vec3d& ivelocity, vec3d& f
 	Faerodinamic.y = C * (0.5f) * d * S * (ivelocity.y * ivelocity.y) * dt;   //Appling the aerodinamic formula C*1/2*d*(v^2)*S
 
 	//Acceleration with applied forces;
-	newacc.x = acceleration.x - Ffriction.x;
-	newacc.y = acceleration.y - Faerodinamic.y;
 	
-	if (touch_floor == false) {
-		fposition.x = iposition.x + ivelocity.x * dt;		//Gets the object's final position in the X axis.
-		fposition.y = iposition.y + ivelocity.y * dt;		//Gets the object's final position in the Y axis.
+	fposition.x = iposition.x + ivelocity.x * dt;		//Gets the object's final position in the X axis.
+	fposition.y = iposition.y + ivelocity.y * dt;		//Gets the object's final position in the Y axis.
 	
-		iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
-		iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
-	
+	iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
+	iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
 
-		fvelocity.x = ivelocity.x + acceleration.x * dt;			//Gets the object's final velocity in the X axis.
-		fvelocity.y = ivelocity.y + newacc.y * dt;			//Gets the object's final velocity in the Y axis.
-		
-		ivelocity.x = fvelocity.x;							//Resets the object's initial velocity in the X axis to the new velocity.
-		ivelocity.y = fvelocity.y;							//Resets the object's initial velocity in the Y axis to the new velocity.
-		
-	}
-	else
-	{
-		fposition.x = iposition.x + ivelocity.x * dt;		//Gets the object's final position in the X axis.
-		fposition.y = iposition.y + ivelocity.y * dt;		//Gets the object's final position in the Y axis.
-		
-		iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
-		iposition.y = fposition.y;							//Resets the object's initial position in the Y axis to the new position.
-
-		fvelocity.x = ivelocity.x + newacc.x * dt;			//Gets the object's final velocity in the X axis.
-		fvelocity.y = ivelocity.y + newacc.y * dt;			//Gets the object's final velocity in the Y axis.
+	fvelocity.x = ivelocity.x + (acceleration.x * Ffriction.x) * dt;			//Gets the object's final velocity in the X axis.
+	fvelocity.y = ivelocity.y + (acceleration.y * Faerodinamic.y) * dt;			//Gets the object's final velocity in the Y axis.
 	
-		ivelocity.x = fvelocity.x;							//Resets the object's initial velocity in the X axis to the new velocity.
-		ivelocity.y = fvelocity.y;							//Resets the object's initial velocity in the Y axis to the new velocity.
-		
-	}
+	ivelocity.x = fvelocity.x;							//Resets the object's initial velocity in the X axis to the new velocity.
+	ivelocity.y = fvelocity.y;							//Resets the object's initial velocity in the Y axis to the new velocity.
 
 
 	LOG("Dt %f", dt);

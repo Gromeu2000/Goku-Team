@@ -27,17 +27,17 @@ ModuleScene::ModuleScene() : Module()
 
 	//Initial Position
 	InitPos.x = 0.0f;			//Position in the 'x' axis
-	InitPos.y = 0.0f;			//Position in the 'y' axis 
+	InitPos.y = 650.0f;			//Position in the 'y' axis 
 	InitPos.z = 0.0f;			//Position in the 'z' axis
 
 	//Initial Velocity
-	InitVel.x = 0.0f;			//Velocity in the 'x' axis
+	InitVel.x = 50.0f;			//Velocity in the 'x' axis
 	InitVel.y = 0.0f;			//Velocity in the 'y' axis 
 	InitVel.z = 0.0f;			//Velocity in the 'z' axis
 
 	//Initial Acceleration
-	float gravity = 10.0f;
-	InitAccel.x = 0.0f;			//Acceleration in the 'x' axis
+	float gravity = 0.0f;
+	InitAccel.x = 2.0f;			//Acceleration in the 'x' axis
 	InitAccel.y = gravity;		//Acceleration in the 'y' axis == gravity
 	InitAccel.z = 0.0f;			//Acceleration in the 'z' axis
 
