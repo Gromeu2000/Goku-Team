@@ -101,11 +101,17 @@ void ModulePhysics::EulerIntegrator(vec3d& iposition, vec3d& ivelocity, vec3d& f
 	if (fposition.y >= 650) {
 
 		touch_floor=true;
+		rebound = true;
 		fvelocity.x = ivelocity.x + acceleration.x  * dt;			//Gets the object's final velocity in the X axis.
 		if (fvelocity.x < 0)
 		{
 			fvelocity.x = 0;
 		}
+	}
+	if (fvelocity.x < 19.85 && rebound==true) {
+		fvelocity.y = 0;
+		fvelocity.x = 0;
+		fposition.y = 650;
 	}
 
 	iposition.x = fposition.x;							//Resets the object's initial position in the X axis to the new position.
